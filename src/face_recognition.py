@@ -6,10 +6,7 @@ from sklearn.svm import SVC
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score
 from src.handle_data import load_dataset, save_dataset
-from src.face_detection.MTCNN import MTCNN_detection
-from src.face_detection.OpenCv import OpenCv_detection
-from src.face_detection.Dlib import Dlib_detection
-from src.face_detection.DlibCnn import DlibCnn_detection
+from src.face_detection.face_detection import Face_deteaction
 from models.Pessoas import Pessoa
 import os
 import cv2
@@ -17,10 +14,10 @@ import cv2
 
 class Face_Recognizer:
 
-    def __init__(self, dataPath: str = "./data", modelPath: str = "./training_models") -> None:
+    def __init__(self, dataPath: str = "./data", modelPath: str = "./training_models", method: str = "OPENCV") -> None:
 
         self.modelPath = modelPath
-        self.face_detection = DlibCnn_detection()
+        self.face_detection = Face_deteaction(method).detector
         self.embedder = FaceNet()
         try:
             self.model = load(modelPath + "\\model.joblib")
