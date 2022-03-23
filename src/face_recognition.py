@@ -60,7 +60,7 @@ class Face_Recognizer:
         dump(model, modelPath + "\\model.joblib")
         dump(label_encoder, modelPath + "\\label_encoder.joblib")
 
-    def recognize_sample(self, sample):
+    def recognize_sample(self, sample) -> list:
         sample = self.get_embedding(sample)
         predicted = self.model.predict(sample)
         prob = self.model.predict_proba(sample)
@@ -69,7 +69,6 @@ class Face_Recognizer:
 
     def recognize_frame(self, frame: list) -> List[Pessoa]:
         faces = self.face_detection.detect_faces_by_frame(frame)
-        print(faces)
         pessoas = list()
         for face in faces:
             x1, y1, width, height = face.box

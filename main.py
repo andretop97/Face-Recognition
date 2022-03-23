@@ -3,7 +3,7 @@ import time
 from src.face_recognition import Face_Recognizer
 
 
-face_recognizer = Face_Recognizer()
+face_recognizer = Face_Recognizer(method="MTCNN")
 cam = cv2.VideoCapture(0)
 
 cTime = 0

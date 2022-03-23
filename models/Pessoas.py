@@ -3,3 +3,4 @@ class Pessoa:
         self.name = name
         self.position = position
         self.prob = prob
+        self.tracker = None
